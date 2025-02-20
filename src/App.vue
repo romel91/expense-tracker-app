@@ -1,4 +1,5 @@
 <script setup>
+
 import { ref, onMounted, watch } from 'vue';
 import AddTransaction from './components/AddTransaction.vue';
 import TransactionList from './components/TransactionList.vue';
