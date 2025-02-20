@@ -34,32 +34,30 @@
     </div>
   </template>
   
-  <script>
+  <script setup>
   import { ref, computed } from 'vue';
   
-  export default {
-    props: ['transactions'],
-    setup(props) {
-      const filter = ref('all');
-      
-      const filteredTransactions = computed(() => {
-        if (filter.value === 'income') {
-          return props.transactions.filter(t => t.type === 'Income');
-        } else if (filter.value === 'expense') {
-          return props.transactions.filter(t => t.type === 'Expense');
-        }
-        return props.transactions;
-      });
+ 
+  const props = defineProps(['transactions']);
   
-      const amountClass = (amount, type) => {
-        let classes = type === 'Income' ? 'text-success' : 'text-danger';
-        if (amount >= 500) classes += ' fw-bold';
-        return classes;
-      };
+  const filter = ref('all');
   
-      const typeClass = (type) => type === 'Income' ? 'text-success' : 'text-danger';
-  
-      return { filter, filteredTransactions, amountClass, typeClass };
+  const filteredTransactions = computed(() => {
+    if (filter.value === 'income') {
+      return props.transactions.filter(t => t.type === 'Income');
+    } else if (filter.value === 'expense') {
+      return props.transactions.filter(t => t.type === 'Expense');
     }
+    return props.transactions;
+  });
+  
+  const amountClass = (amount, type) => {
+    let classes = type === 'Income' ? 'text-success' : 'text-danger';
+    if (amount >= 500) classes += ' fw-bold';
+    return classes;
   };
+  
+  const typeClass = (type) => type === 'Income' ? 'text-success' : 'text-danger';
+  
   </script>
+  

@@ -15,7 +15,7 @@ onMounted(() => {
 
 watch(transactions, (newVal) => {
   localStorage.setItem('transactions', JSON.stringify(newVal));
-}, { deep: true });
+});
 
 const addTransaction = (transaction) => {
   transactions.value.push(transaction);
